@@ -69,7 +69,7 @@ nums.erase(it);
     // Now set2 has one element 5 and set1 contains the union of both.
 
 ```
-- comparison operators: surprisingly you can compare sets in C++ accordign to their lexicographical order, for example:
+- comparison operators - surprisingly you can compare sets in C++ accordign to their lexicographical order, for example:
 ```
     set<int> set1 = {1, 3, 5};
     set<int> set2 = {1, 3, 5};
@@ -92,6 +92,17 @@ nums.erase(it);
     }
 
     // output: set1 is equal to set2
+```
+- Custom set - When constructing a set, you can provide a custom comparator to change the default ordering of the elements.
+```
+struct ReverseComparator {
+    bool operator()(const int& lhs, const int& rhs) const {
+        return lhs > rhs; // Reverse order
+    }
+};
+
+std::set<int, ReverseComparator> mySet;
+
 ```
 
 ### Lambda functions
