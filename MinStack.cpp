@@ -133,6 +133,6 @@ int main() {
         myStack.pop();
     }
 }
-
+// Here is a sample input:
 // 7
 // 8 10 13 6 14 2 20
