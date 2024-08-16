@@ -49,6 +49,7 @@ nums.erase(it);
 - `find()`
 - `lower_bound(x)` - Returns an iterator pointing to the first element not less than the given value.
 - `upper_bound(x)` - Returns an iterator pointing to the first element greater than the given value.
+- `equal_range(x)` - Basically returns a pair of iterators equivalent to `make_pair(nums.lower_bound(x), nums.upper_bound(x))`
 
 - `empty()`
 - `size()`
@@ -68,6 +69,29 @@ nums.erase(it);
     // Now set2 has one element 5 and set1 contains the union of both.
 
 ```
--
+- comparison operators: surprisingly you can compare sets in C++ accordign to their lexicographical order, for example:
+```
+    set<int> set1 = {1, 3, 5};
+    set<int> set2 = {1, 3, 5};
+    set<int> set3 = {1, 2, 6};
+    set<int> set4 = {1, 3, 4, 7};
+
+    // Compare set1 and set2
+    if (set1 == set2) {
+        cout << "set1 is equal to set2" << endl;
+    }
+
+    // Compare set1 and set3
+    if (set1 < set3) {
+        cout << "set1 is less than set3" << endl;
+    }
+
+    // Compare set1 and set4
+    if (set1 < set4) {
+        cout << "set1 is less than set4" << endl;
+    }
+
+    // output: set1 is equal to set2
+```
 
 ### Lambda functions
