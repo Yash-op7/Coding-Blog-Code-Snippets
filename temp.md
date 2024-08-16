@@ -106,3 +106,4 @@ std::set<int, ReverseComparator> mySet;
 ```
 
 ### Lambda functions
+`[capture list](parameters) -> return type { body }`
