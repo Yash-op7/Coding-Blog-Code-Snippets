@@ -1,0 +1,48 @@
+This is a post I will regularly update with the nuances and tricks that I discover while solving complex DSA questions in C++.
+
+### Accessing set elements via iterators:
+Let's say you have a `set<int> nums;`, then:
+1. To get the edge elements you can do:
+```
+int first = *nums.begin();
+int last = *(--(nums.end()));
+// OR    
+first = *(--(nums.rend()));
+last = *nums.rbegin();
+```
+
+⭐️ so basically try to not use end() and rend() as they are a bit tricky and there are simpler alternatives:
+
+❗️ Note that rbegin() and rend() are reverse iterators so to get the second last element using rbegin() what do you think we will do?
+
+-> The answer is: `int secondLast = *(++(nums.rbegin()));`
+
+❗️ Also remember that rend() and end() don't give iterators pointing to elements, rather they return the pointer of one past the first or the last, i.e, nums.end() will give iterator pointing to the address after the last element which is not dereference-able similarly nums.rend() will give the iterator of the location one before the first element so be careful of how you use them otherwise it will result in memory segmentation errors.
+
+Also one final note about edge operators:
+You can also use constant operators if your functionality requires, to write more predictable and debuggable code:
+```
+auto FIRST_ITR = nums.cbegin();
+auto LAST_ITR = nums.cend();
+auto FIRST_REV_ITR = nums.crbegin();
+auto LAST_REV_ITR = nums.crend();
+```
+
+2. Different ways to erase elements:
+There are 3 methods:
+- a. `nums.erase(iterator)`
+
+
+⭐️ If you want to remove the 4th element in the set you **cannot** do:
+`nums.erase(((nums.begin())+4));`
+because while sets are ordered containers they don't allow random access like vectors so you must iterate with the iterator one at a time like so:
+```
+auto it = nums.begin();
+int x = 4;
+while(x--) it++;
+nums.erase(it);
+```
+- b. `nums.erase(value)` - straightforward, just removes the value from the set if present.
+- c. `nums.erase(iterator1, iterator2)` - useful, removes elements in the range [iterator1, iterator2) ❗️ note the closed-open interval
+
+### Lambda functions
