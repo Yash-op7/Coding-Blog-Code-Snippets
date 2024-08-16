@@ -2,7 +2,7 @@ This is a post I will regularly update with the nuances and tricks that I discov
 
 ### Accessing set elements via iterators:
 Let's say you have a `set<int> nums;`, then:
-1. To get the edge elements you can do:
+#### 1. To get the edge elements you can do:
 ```
 int first = *nums.begin();
 int last = *(--(nums.end()));
@@ -28,9 +28,9 @@ auto FIRST_REV_ITR = nums.crbegin();
 auto LAST_REV_ITR = nums.crend();
 ```
 
-2. Different ways to erase elements:
+#### 2. Different ways to erase elements:
 There are 3 methods:
-- a. `nums.erase(iterator)`
+- `nums.erase(iterator)`
 
 
 ⭐️ If you want to remove the 4th element in the set you **cannot** do:
@@ -42,7 +42,32 @@ int x = 4;
 while(x--) it++;
 nums.erase(it);
 ```
-- b. `nums.erase(value)` - straightforward, just removes the value from the set if present.
-- c. `nums.erase(iterator1, iterator2)` - useful, removes elements in the range [iterator1, iterator2) ❗️ note the closed-open interval
+- `nums.erase(value)` - straightforward, just removes the value from the set if present.
+- `nums.erase(iterator1, iterator2)` - useful, removes elements in the range [iterator1, iterator2) ❗️ note the closed-open interval
+
+#### 3. Trivial but useful functions:
+- `find()`
+- `lower_bound(x)` - Returns an iterator pointing to the first element not less than the given value.
+- `upper_bound(x)` - Returns an iterator pointing to the first element greater than the given value.
+
+- `empty()`
+- `size()`
+
+#### 4. Hidden but awesome functions:
+- `swap()` - Exchanges the contents of two sets. This is a fast operation because it swaps pointers and size metadata rather than copying the elements.
+
+- `merge(anotherSet)` - Transfers all elements from anotherSet into the set which are not present in destination set, removing duplicates.
+
+```
+    std::set<int> set1 = {1, 3, 5, 7, 9};
+    std::set<int> set2 = {2, 4, 6, 8, 10, 5};
+
+    // Merge set2 into set1
+    set1.merge(set2);
+
+    // Now set2 has one element 5 and set1 contains the union of both.
+
+```
+-
 
 ### Lambda functions
